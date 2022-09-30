@@ -1,0 +1,23 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+
+#table-container{
+    background-color: red;
+    display: grid;
+    grid-template-rows: 40px 1fr;
+    width: 600px;
+    justify-content: center;
+    margin-top: 200px;
+}
+
+table, td, tr{
+    border: 2px solid black;
+}
+
+#table-container button{
+    justify-self: right;
+    margin-bottom: 7px;
+}
+
