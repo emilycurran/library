@@ -48,7 +48,6 @@ class InputPanel{
     constructor(){
         this.html = document.getElementById('input-panel');
         this.form = document.getElementsByTagName('form')[0];
-        this.form = document.getElementsByTagName('form')[0];
         this.addButton = document.getElementById("add-book-button");
         this.submitButton = document.getElementById("book-submit");
         
@@ -56,13 +55,22 @@ class InputPanel{
             this.makeVisible();
         }.bind(this));
 
-        this.submitButton.addEventListener("click", function(){
-            this.makeInvsible();
+        this.submitButton.addEventListener("click", function(e){
+            e.preventDefault();
+            var bookArr = this.getFormArray();
+            var book = new Book(bookArr);
+            console.log(book);
+            // this.makeInvsible();
         }.bind(this));
     }  
     
-    formValuesArray(){
-
+    getFormArray(){
+        var form = this.form;
+        var parameters = [];
+        for(let i=0; i<form.elements.length-1; i++){
+            parameters.push(form.elements[i].value);
+        }
+        return parameters;
     }
 
     makeVisible(){
@@ -70,29 +78,32 @@ class InputPanel{
     }
 
     makeInvsible(){
+        console.log("shouldn't be here");
         this.html.style.display = "none";
     }
 }
 
 
 
-function Book(title, author, numPages, haveRead){
-    this.title = title;
-    this.author = author;
-    this.numPages = numPages;
-    this.haveRead = haveRead;
+class Book{
+    constructor(arr){
+        this.title = arr[0];
+        this.author = arr[1];
+        this.numPages = arr[2];
+        this.haveRead = arr[3];
+    }
 }
 
 var myLib = new Library();
 var table = new Table();
 
-let mobyDick = new Book("moby dick", "herman melville", 123, true);
+let mobyDick = new Book(["moby dick", "herman melville", 123, true]);
 myLib.addBook(mobyDick);
 
-let treasureIsland = new Book("treasure island", "r.l. stevenson", 124, true);
+let treasureIsland = new Book(["treasure island", "r.l. stevenson", 124, true]);
 myLib.addBook(treasureIsland);
 
-let edgelord = new Book("suck a dick", "me", 69, true);
+let edgelord = new Book(["suck a dick", "me", 69, true]);
 myLib.addBook(edgelord);
 
 myLib.removeBook(edgelord);

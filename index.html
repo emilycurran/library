@@ -24,7 +24,7 @@
         </table>
     </div>
     <div id="input-panel">
-        <form action="">
+        <form action="" id="book-info">
             <label for="title">Title: </label>
             <input type="text" id="title">
             
@@ -35,9 +35,9 @@
             <input type="number" id="num-pages">
             
             <label for="have-read">Have Read: </label>
-            <input type="checkbox" name="" id="have-read">
+            <input type="checkbox" name="" id="have-read" data-val="true" and value="true">
             
-            <button type="submit" id="book-submit">submit</button>
+            <button type="submit" form="book-info" id="book-submit">submit</button>
         </form>
     </div> 
 </body>
