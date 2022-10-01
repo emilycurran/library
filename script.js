@@ -2,6 +2,15 @@
 class Library{
     constructor(){
         this.books = [];
+        this.table = new Table(this);
+
+        let mobyDick = new Book(["moby dick", "herman melville", 123, true]);
+        this.addBook(mobyDick);
+
+        let treasureIsland = new Book(["treasure island", "r.l. stevenson", 124, true]);
+        this.addBook(treasureIsland);
+
+        this.table.displayBooks();
     }
 
     addBook(newBook) {
@@ -18,14 +27,22 @@ class Library{
 
 class Table{
     //link to the html table
-    constructor(){
-        this.html = document.getElementsByTagName('table')[0];
-        this.bookInputPanel = new InputPanel();
+    constructor(library){
+        this.library = library;
+        this.html = document.getElementById('table-body');
+        this.bookInputPanel = new InputPanel(this);
     }
 
-    displayBooks(library){
-        for(let i=0; i<library.length; i++){
-            var book = library[i];
+    clearTable(){
+
+    }
+
+    displayBooks(){
+        this.html.innerHTML = "";
+
+        var books = this.library.books;
+        for(let i=0; i<books.length; i++){
+            var book = books[i];
             var bookArray = [];
             bookArray.push(i+1);
             for(let prop in book){
@@ -45,7 +62,8 @@ class Table{
 }
 
 class InputPanel{
-    constructor(){
+    constructor(table){
+        this.table = table;
         this.html = document.getElementById('input-panel');
         this.form = document.getElementsByTagName('form')[0];
         this.addButton = document.getElementById("add-book-button");
@@ -59,8 +77,9 @@ class InputPanel{
             e.preventDefault();
             var bookArr = this.getFormArray();
             var book = new Book(bookArr);
-            console.log(book);
-            // this.makeInvsible();
+            table.library.addBook(book);
+            table.displayBooks();
+            this.makeInvsible();
         }.bind(this));
     }  
     
@@ -78,7 +97,6 @@ class InputPanel{
     }
 
     makeInvsible(){
-        console.log("shouldn't be here");
         this.html.style.display = "none";
     }
 }
@@ -95,17 +113,3 @@ class Book{
 }
 
 var myLib = new Library();
-var table = new Table();
-
-let mobyDick = new Book(["moby dick", "herman melville", 123, true]);
-myLib.addBook(mobyDick);
-
-let treasureIsland = new Book(["treasure island", "r.l. stevenson", 124, true]);
-myLib.addBook(treasureIsland);
-
-let edgelord = new Book(["suck a dick", "me", 69, true]);
-myLib.addBook(edgelord);
-
-myLib.removeBook(edgelord);
-
-table.displayBooks(myLib.books);
