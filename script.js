@@ -17,10 +17,16 @@ class Library{
         this.books.push(newBook);
     }
 
-    removeBook(oldBook){
-        var index = this.books.indexOf(oldBook);
+    removeBook(index){
+        console.log(index);
         if (index !== -1){
            this.books.splice(index, 1); 
+        }
+    }
+
+    setBookIds(){
+        for(let i=0; i < this.books.length; i++){
+            this.books[i].id = i+1;
         }
     }
 }
@@ -33,18 +39,14 @@ class Table{
         this.bookInputPanel = new InputPanel(this);
     }
 
-    clearTable(){
-
-    }
-
     displayBooks(){
+        this.library.setBookIds();
         this.html.innerHTML = "";
 
         var books = this.library.books;
         for(let i=0; i<books.length; i++){
             var book = books[i];
             var bookArray = [];
-            bookArray.push(i+1);
             for(let prop in book){
                 bookArray.push(book[prop]);
             }
@@ -58,6 +60,17 @@ class Table{
             var newCell = newRow.insertCell();
             newCell.innerHTML = rowArray[i];
         }
+        var button = document.createElement('button');
+        button.classList.add("delButton");
+        button.setAttribute("row", rowArray[0] - 1);
+
+        button.addEventListener("click", function(button){
+            var index = button.target.getAttribute('row');
+            this.library.removeBook(index);
+            this.displayBooks();
+        }.bind(this));
+
+        newRow.append(button);
     }
 }
 
@@ -86,9 +99,10 @@ class InputPanel{
     getFormArray(){
         var form = this.form;
         var parameters = [];
-        for(let i=0; i<form.elements.length-1; i++){
+        for(let i=0; i<form.elements.length-2; i++){
             parameters.push(form.elements[i].value);
         }
+        parameters.push(form.elements[form.elements.length-2].checked);
         return parameters;
     }
 
@@ -105,6 +119,7 @@ class InputPanel{
 
 class Book{
     constructor(arr){
+        this.id = -1;
         this.title = arr[0];
         this.author = arr[1];
         this.numPages = arr[2];
