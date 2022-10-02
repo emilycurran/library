@@ -69,7 +69,7 @@ class Table{
         newCell.append(readCheck);
 
         var delBtn = document.createElement('img');
-        delBtn.src = 'delete.svg';
+        delBtn.src = './delete.svg';
         delBtn.classList.add("delButton");
         delBtn.setAttribute("row", rowArray[0] - 1);
 
@@ -81,11 +81,11 @@ class Table{
         }.bind(this));
 
         delBtn.addEventListener("mouseover", function(){
-            this.src = "delete-empty.svg";
+            this.src = "./delete-empty.svg";
         });
 
         delBtn.addEventListener("mouseout", function(){
-            this.src = "delete.svg";
+            this.src = "./delete.svg";
         });
 
         newCell = newRow.insertCell();
