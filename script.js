@@ -56,21 +56,29 @@ class Table{
 
     addRow(rowArray){
         var newRow = this.html.insertRow();
-        for(let i=0; i<rowArray.length; i++){
+        for(let i=0; i<rowArray.length-1; i++){
             var newCell = newRow.insertCell();
             newCell.innerHTML = rowArray[i];
         }
-        var button = document.createElement('button');
-        button.classList.add("delButton");
-        button.setAttribute("row", rowArray[0] - 1);
 
-        button.addEventListener("click", function(button){
-            var index = button.target.getAttribute('row');
+        var readCheck= document.createElement('input');
+        readCheck.type = "checkbox";
+        readCheck.checked = rowArray[rowArray.length - 1];
+        readCheck.classList.add('have-read-button');
+        var newCell = newRow.insertCell();
+        newCell.append(readCheck);
+
+        var delBtn = document.createElement('button');
+        delBtn.classList.add("delButton");
+        delBtn.setAttribute("row", rowArray[0] - 1);
+
+        delBtn.addEventListener("click", function(delBtn){
+            var index = delBtn.target.getAttribute('row');
             this.library.removeBook(index);
             this.displayBooks();
         }.bind(this));
 
-        newRow.append(button);
+        newRow.append(delBtn);
     }
 }
 
