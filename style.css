@@ -1,18 +1,25 @@
-body{
+#container{
     display: flex;
     justify-content: center;
 }
 
 #table-container{
+    background-color: yellow;
     display: grid;
     grid-template-rows: 40px 1fr;
-    width: 600px;
     justify-content: center;
     margin-top: 200px;
 }
 
-table, td, tr{
-    border: 2px solid black;
+table{
+    background-color: red;
+    min-width: 600px;
+}
+
+td{
+    height: 40px;
+    vertical-align: middle;
+    border-bottom: 5px solid green;
 }
 
 #table-container button{
@@ -28,6 +35,15 @@ table, td, tr{
     width: 600px;
     margin-top: 200px;
     border-radius: 40px;
+    grid-template-rows: 50px 1fr;
+}
+
+#input-panel > button{
+    justify-self: right;
+    height: 30px;
+    width: 30px;
+    margin: 10px;
+    margin-right: 20px;
 }
 
 form{

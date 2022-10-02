@@ -78,7 +78,8 @@ class Table{
             this.displayBooks();
         }.bind(this));
 
-        newRow.append(delBtn);
+        newCell = newRow.insertCell();
+        newCell.append(delBtn);
     }
 }
 
@@ -89,6 +90,11 @@ class InputPanel{
         this.form = document.getElementsByTagName('form')[0];
         this.addButton = document.getElementById("add-book-button");
         this.submitButton = document.getElementById("book-submit");
+        this.escButton = document.getElementById("esc-input-panel");
+
+        this.escButton.addEventListener("click", function(){
+            this.makeInvsible();
+        }.bind(this));
         
         this.addButton.addEventListener("click", function(){
             this.makeVisible();
@@ -102,6 +108,7 @@ class InputPanel{
             table.displayBooks();
             this.makeInvsible();
         }.bind(this));
+        
     }  
     
     getFormArray(){
