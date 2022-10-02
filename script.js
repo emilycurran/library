@@ -74,7 +74,6 @@ class Table{
         delBtn.setAttribute("row", rowArray[0] - 1);
 
         delBtn.addEventListener("click", function(delBtn){
-            console.log("yo");
             var index = delBtn.target.getAttribute('row');
             this.library.removeBook(index);
             this.displayBooks();
