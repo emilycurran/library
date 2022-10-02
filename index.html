@@ -6,28 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;500&display=swap" rel="stylesheet">
     <title>Library</title>
 </head>
 <body>
     <div id="container">
+        <h1>My Library</h1>
         <div id="table-container">
             <button id="add-book-button">add book</button>
             <table>
                 <thead>
                     <tr>
-                        <td></td>
+                        <td>&nbsp;</td>
                         <td>Title</td>
                         <td>Author</td>
                         <td>No. Pages</td>
                         <td>Have Read</td>
-                        <td></td>
+                        <td>&nbsp;</td>
                     </tr>
                 </thead>
                 <tbody id="table-body"></tbody>
             </table>
         </div>
         <div id="input-panel">
-            <button id="esc-input-panel">X</button>
+            <img src="close.svg" id="esc-input-panel">
             <form action="" id="book-info">
                 <label for="title">Title: </label>
                 <input type="text" id="title" required>

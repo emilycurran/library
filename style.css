@@ -1,34 +1,84 @@
+h1{
+    font-size: 40px;
+    justify-self: left;
+    margin: 50px;
+    font-weight: 400;
+}
+
+body{
+    font-family: 'Inter Tight', sans-serif;
+    color: #1c3836;
+    background-color: #EBF2E8;
+}
+
 #container{
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 #table-container{
-    background-color: yellow;
+    max-width: 960px;
+    width: 80%;
     display: grid;
-    grid-template-rows: 40px 1fr;
-    justify-content: center;
-    margin-top: 200px;
+    grid-template-rows: 60px 1fr;
 }
 
 table{
-    background-color: red;
-    min-width: 600px;
+    width: 100%;
+}
+
+table img{
+    align-self: center;
+    margin: 2px;
+    height: 25px;
+    color: red;
+    opacity: 50%;
+}
+
+tr{
+    width: 100%;
 }
 
 td{
+    font-weight: 300;
     height: 40px;
     vertical-align: middle;
-    border-bottom: 5px solid green;
+    border-bottom: 2px solid rgb(200, 200, 200);
+    min-width: 20px;
 }
 
-#table-container button{
+thead > * > *{
+    font-weight: 600;
+    background-color: #6E8573;
+    color: #EBF2E8;
+}
+
+td:nth-child(1), td:nth-child(5), td:nth-child(6){
+    align-self: center;
+    text-align: center;
+}
+
+tr:nth-child(even){
+    background-color: #dee7db;
+}
+
+#table-container > button{
+    background-color: #79beb3;
     justify-self: right;
-    margin-bottom: 7px;
+    height: 40px;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Inter Tight';
+    font-weight: 600;
+    font-size: 14px;
+    
 }
 
 #input-panel{
-    background-color: purple;
+    background-color: rgb(191, 227, 194);
     position: absolute;
     display: none;
     height: 300px;
@@ -38,12 +88,21 @@ td{
     grid-template-rows: 50px 1fr;
 }
 
-#input-panel > button{
+#input-panel > img{
     justify-self: right;
     height: 30px;
     width: 30px;
     margin: 10px;
     margin-right: 20px;
+    opacity: 50%;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+img:hover{
+    cursor: pointer;
 }
 
 form{
@@ -51,7 +110,7 @@ form{
     height: 100%;
     width: 100%;
     grid-template-columns: 150px 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 60px;
 }
 
 form > *{
@@ -61,11 +120,18 @@ form > *{
 form button{
     grid-column: 1/-1;
     justify-self: center;
+    align-self: center;
     width: 200px;
+    border: none;
+    height: 40px;
+    background-color: #79beb3;
+    color: white;
+    font: "Inter Tight";
+    font-weight: 600;
+    border-radius: 5px;
 }
 
 label{
-    background-color: aqua;
     justify-self: right;
     margin-right: 20px;
 }
@@ -73,6 +139,8 @@ label{
 input{
     margin-left: 20px;
     margin-right: 20px;
+    border: none;
+    border-radius: 10px;
 }
 
 input[type="checkbox"]{

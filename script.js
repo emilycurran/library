@@ -68,15 +68,25 @@ class Table{
         var newCell = newRow.insertCell();
         newCell.append(readCheck);
 
-        var delBtn = document.createElement('button');
+        var delBtn = document.createElement('img');
+        delBtn.src = 'delete.svg';
         delBtn.classList.add("delButton");
         delBtn.setAttribute("row", rowArray[0] - 1);
 
         delBtn.addEventListener("click", function(delBtn){
+            console.log("yo");
             var index = delBtn.target.getAttribute('row');
             this.library.removeBook(index);
             this.displayBooks();
         }.bind(this));
+
+        delBtn.addEventListener("mouseover", function(){
+            this.src = "delete-empty.svg";
+        });
+
+        delBtn.addEventListener("mouseout", function(){
+            this.src = "delete.svg";
+        });
 
         newCell = newRow.insertCell();
         newCell.append(delBtn);
@@ -107,6 +117,7 @@ class InputPanel{
             table.library.addBook(book);
             table.displayBooks();
             this.makeInvsible();
+            this.form.reset();
         }.bind(this));
         
     }  
